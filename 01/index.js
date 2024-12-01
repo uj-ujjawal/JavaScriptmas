@@ -13,48 +13,66 @@ For example, only one of these entries should be added to the list — the other
 **Your tasks:**
 1. Ensure no duplicates can be added to the list.
 2. Account for extra spaces at the beginning/end and between words.
- 
+
 **Stretch Goals:**
 1. Case Sensitivity: Handle cases where capitalization differs. For example:
    - `"Cat Hammock"` should be flagged as a duplicate of `"cat hammock"`.
-   - Preserve Grandpa’s original capitalization (e.g., if `"Cat Hammock"` is added first, that should be added to the list). Do not simply convert all entries to lower case - Grandpa might well want to capitalize some words. 
+   - Preserve Grandpa’s original capitalization (e.g., if `"Cat Hammock"` is added first, that should be added to the list). Do not simply convert all entries to lower case - Grandpa might well want to capitalize some words.
 
 2. Additional Features: Add functionality to delete or edit items on the list.
 */
 
 // Get references to DOM elements
-const itemInput = document.getElementById('item-input')
-const addItemButton = document.getElementById('add-item-button')
-const shoppingList = document.getElementById('shopping-list')
-const listArr = []
+const itemInput = document.getElementById("item-input");
+const addItemButton = document.getElementById("add-item-button");
+const shoppingList = document.getElementById("shopping-list");
+const listArr = [];
 
 // Function to check item is not duplicate
 function checkDuplicate() {
-    
-    /* ⚠️ You need to add code to this function! ⚠️*/ 
-    
-    const itemText = itemInput.value
-    listArr.push(itemText)
-    renderList()
+  /* ⚠️ You need to add code to this function! ⚠️*/
+
+  const itemText = itemInput.value;
+  const normalizedInput = normalizeText(itemText);
+  console.log(normalizedInput);
+
+  const isDuplicate = listArr.some(
+    (item) => normalizeText(item) === normalizedInput
+  );
+
+  if (!isDuplicate && normalizedInput !== "") {
+    listArr.push(normalizedInput);
+    console.log(`"${normalizedInput}" added to the array.`);
+  } else {
+    // console.log(`"${normalizedInput}" is already listed.`);
+    showError(`"${normalizedInput}" is already included in the list`);
+  }
+  renderList();
 }
 
+function normalizeText(itemText) {
+  return itemText.trim().toLowerCase().replace(/\s+/g, " ");
+}
+function showError(message) {
+  alert(`Error: ${message}`);
+}
 // Function to add an item to the shopping list
 function renderList() {
-    shoppingList.innerHTML = ''
-    listArr.forEach((gift) => {
-        const listItem = document.createElement('li')
-        listItem.textContent = gift
-        shoppingList.appendChild(listItem)
-    })
-    itemInput.value = ''; // Clear the input field
+  shoppingList.innerHTML = "";
+  listArr.forEach((gift) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = gift;
+    shoppingList.appendChild(listItem);
+  });
+  itemInput.value = ""; // Clear the input field
 }
 
 // Add event listener to button
-addItemButton.addEventListener('click', checkDuplicate)
+addItemButton.addEventListener("click", checkDuplicate);
 
 // Allow adding items by pressing Enter key
-itemInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        checkDuplicate()
-    }
-})
+itemInput.addEventListener("keypress", (event) => {
+  if (event.key === "Enter") {
+    checkDuplicate();
+  }
+});
