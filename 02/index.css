@@ -1,41 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Stylish&family=Twinkle+Star&family=Vast+Shadow&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color-primary: #730217;
+  --bg-color-secondary: #efcb88;
+  --bg-color-accent: #bcd8d6;
+  --text-color-primary: var(--bg-color-primary);
+  --text-color-secondary: #f5f5f5;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
 body {
-  font-family: "Times New Roman", Times, serif;
-  background-color: red;
+  min-block-size: 100vh;
+  font-family: sans-serif;
+  background-color: var(--bg-color-primary);
+  color: var(--text-color-secondary);
+  overflow-x: hidden;
 }
 
-h2 {
-  margin: 20px;
-  color: darkred;
-  font-size: 24px;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-
+h1,
+h2,
+h3,
 h4 {
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
 }
 
-.calendar-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2px;
-  padding: 10px;
-  max-width: 800px;
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li {
+  list-style: none;
+}
+
+.header {
+  font-family: "Twinkle Star", sans-serif;
+  text-align: center;
+  color: var(--text-color-secondary);
+  padding-block: 1rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.header h4 {
+  font-size: 1.4rem;
+}
+
+img {
+  max-inline-size: 100%;
+  display: block;
+}
+
+main {
+  max-width: 100%;
   margin: 0 auto;
-  background-color: tomato;
-  border-radius: 20px;
+}
+.calendar-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(3.5rem, 1fr));
+  gap: 0.1rem;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: transparent;
+  border-radius: 5px;
 }
 
+/* Calendar box styles */
 .calendar-box {
-  background-color: #ff0000;
-  color: #ff9999;
-  font-size: 8px;
-  text-align: left;
-  padding: 2px;
-  border: 1px dashed black;
+  position: relative;
+  width: 7.5rem;
+  height: 7.5rem;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.calendar-box-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(0);
+  transition: transform 0.4s ease-in-out;
+}
+
+.calendar-box:nth-of-type(even):hover .calendar-box-inner {
+  transform: rotateY(180deg);
+}
+.calendar-box:nth-of-type(odd):hover .calendar-box-inner {
+  transform: rotateY(-180deg);
+}
+
+.calendar-box-front,
+.calendar-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.calendar-box-front {
+  background-color: var(--bg-color-secondary);
+  border: 2px dashed var(--bg-color-primary);
+  color: var(--text-color-primary);
+}
+
+.calendar-box-back {
+  background-color: #bcd8d6;
+  border: 2px dashed var(--bg-color-primary);
+  color: var(--text-color-primary);
+  transform: rotateY(180deg);
+}
+
+.calendar-box h2 {
+  font-family: "Vast Shadow", serif;
+  font-size: 2rem;
+  margin: 0;
 }
 
 .calendar-box p {
-  margin: 0;
+  margin: 10px 0 0;
   text-align: center;
-  font-size: 12px;
+  font-size: 1rem;
+  font-family: "Stylish", serif;
+}
+
+.calendar-box-front img {
+  width: 32px;
+  height: 32px;
+}
+.calendar-box-back img {
+  width: 64px;
+  height: 64px;
+}
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--text-color-secondary);
+}
+@media (max-width: 500px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .header h4 {
+    font-size: 1rem;
+  }
+  .header {
+    margin-bottom: 1rem;
+  }
+  .calendar-container {
+    grid-template-columns: repeat(3, minmax(3.5rem, 1fr));
+  }
+}
+
+@media (max-width: 400px) {
+  .calendar-container {
+    grid-template-columns: repeat(2, minmax(3.5rem, 1fr));
+  }
 }
