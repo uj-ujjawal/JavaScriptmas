@@ -1,5 +1,122 @@
-html,
-body {
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+HR+Lijeva:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Stylish&display=swap");
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #384b70;
+  color: #f5f5f5;
+  min-block-size: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+.heading {
+  color: #384b70;
+  text-transform: uppercase;
+  font-family: "Stylish", serif;
+  font-size: 3rem;
+  /* margin-bottom: 2rem; */
+}
+.wrapper {
+  border-radius: 20px;
+  background-color: #c1d8c3;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input {
+  text-transform: capitalize;
+  height: 4em;
+  display: block;
+  text-align: left;
+  margin: 1rem auto;
+  transition: all 0.2s;
+  outline: none;
+}
+input,
+button {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  font-family: "Playwrite HR Lijeva", serif;
+  font-size: 1.2rem;
+}
+button {
+  background-color: #fd5e53;
+  color: #f5f5f5;
+  position: relative;
+  transition: all 0.3s linear;
+}
+button:hover {
+  background-color: #a02334;
+}
+input:hover,
+input:focus-visible {
+  outline: none;
+  background-color: #384b70;
+  color: #ffb200;
+}
+
+input {
+  outline: none;
+  caret-color: #ffb200;
+}
+
+/* overlay css */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay .dialogBox {
+  width: 100%;
+  min-height: 20rem;
+  background-color: #750e21;
+  padding: 2em;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  color: #f9e8d9;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: "Playwrite HR Lijeva", serif;
+}
+
+.dialogBox > .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  width: 2rem;
+  text-align: center;
+  padding: 10px;
+  background-color: transparent;
+  color: #f9e8d9;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
