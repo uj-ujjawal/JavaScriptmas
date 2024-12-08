@@ -1,97 +1,210 @@
-/* Reset some default browser styles */
-body, h1, input, button {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
-    background-color: #f7f8fc;
-    color: #333;
-    line-height: 1.6;
-    text-align: center;
-    padding: 20px;
-    background-image: url('xmasMovieBg.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    font-family: 'Poppins';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0d1b2a;
+  background-image: url(./xmasMovieBg.png);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: soft-light;
+  font-family: "Poppins", sans-serif;
+  /* color: #f8f8f8; */
+  overflow: hidden;
 }
-
-/* Heading */
-h1 {
-    font-size: 2rem;
-    color: #2c3e50;
-    color: darkolivegreen;
-    margin-bottom: 20px;
-    font-family: 'Bungee Shade', serif;
-}
-
-/* Main Container */
 main {
-    background-color: #ffffff;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 600px;
-    margin: 1em auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  font-family: "Bungee Shade", cursive;
+  font-size: 3rem;
+  color: #ff6b6b;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 2rem 0;
+  text-align: center;
 }
 
-/* Emoji Clues */
-.emoji-clues-container{
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Form Styling */
 form {
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  position: relative;
+  background-blend-mode: overlay;
+  color: #f2fddf;
+}
+
+.emoji-clues-container {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #f2fddf;
+  font-family: "Poppins", sans-serif;
+  z-index: 1;
 }
 
 label {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: block;
+  font-size: 1.6rem;
+  color: #f2fddf;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-input[type="text"] {
-    width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 15px;
+input {
+  padding: 10px;
+  font-size: 1.4rem;
+  border: 1px solid #ff6b6b; /* Red border */
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f2fddf;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-input[type="text"]:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+input:focus {
+  border-color: #d4af37;
+  outline: none;
 }
 
-/* Button Styling */
 button {
-    background-color: #3498db;
-    color: #ffffff;
-    font-size: 1rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  background-color: #ff6b6b;
+  font-size: 1.4rem;
+  color: #f2fddf;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color linear, color 0.3s linear, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+  background-color: #d4af37;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Answer Box */
-.answer {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #27ae60;
-    min-height: 40px; /* Ensures space is allocated even if empty */
+button:active {
+  transform: translateY(2px);
+}
+button:disabled,
+input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.message-container,
+.result-container {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #ff8c00;
+  margin-top: 20px;
+  text-align: center;
+}
+
+@keyframes snowflakeFall {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(100vh);
+  }
+}
+
+/* Snowflakes styling */
+.snowflake {
+  position: absolute;
+  color: #f2fddf;
+  font-size: 1.5rem;
+  animation: snowflakeFall 10s linear infinite;
+  pointer-events: none;
+}
+
+.loader {
+  margin: 2rem auto;
+  text-align: center;
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+  color: #0000;
+  background: linear-gradient(90deg, #ff8c00 calc(50% + 0.5ch), #f2fddf 0)
+    right/calc(200% + 1ch) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: l7 2s infinite steps(11);
+}
+.loader:before {
+  content: "Next Quiz Is On The Way...";
+}
+@keyframes l7 {
+  to {
+    background-position: left;
+  }
+}
+
+.spinner {
+  margin: 2rem auto;
+  width: 60px;
+  aspect-ratio: 1;
+  border: 15px solid #f2fddf;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(45deg);
+}
+.spinner::before {
+  content: "";
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 15px solid #ff8c00;
+  animation: l18 2s infinite linear;
+}
+@keyframes l18 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+#guess-form.disabled {
+  cursor: not-allowed;
 }
