@@ -1,0 +1,25 @@
+/*
+Link to Figma: https://scrimba.com/links/santa-saas-figma
+*/
+* {
+  --red: rgba(143, 0, 2, 0.83);
+  --light-red: #fff2f2;
+  --dark-red: #470000;
+}
+
+nav {
+  background-color: var(--red);
+}
+
+ul,
+li {
+  padding: 0;
+  list-style-type: none;
+}
+img {
+  max-width: 100%;
+}
+
+#customer img {
+  width: 100px;
+}
