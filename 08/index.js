@@ -1,13 +1,3 @@
-// The keyboard has been rendered for you
-import { renderKeyboard } from "./keyboard.js";
-document
-  .getElementById("keyboard-container")
-  .addEventListener("click", checkGuess);
-
-// Some useful elements
-const guessContainer = document.getElementById("guess-container");
-const snowmanParts = document.getElementsByClassName("snowman-part");
-
 /*
 Challenge
 1. Your challenge is to build a Christmas take on the classic game "Hangman" where a player attempts to guess a word by selecting letters to save a snowman from melting.
@@ -30,11 +20,146 @@ Challenge
 - Add a "New Game" button that appears at the end of a game and resets the app. (You will need to create an array of words to guess)
 */
 
+// The keyboard has been rendered for you
+import { renderKeyboard } from "./keyboard.js";
+
+// Some useful elements
+const guessContainer = document.getElementById("guess-container");
+const snowmanParts = document.getElementsByClassName("snowman-part");
+const sunglasses = document.querySelector(".sunglasses");
+const modal = document.getElementById("modal");
+const modalMessage = document.getElementById("modal-message");
+const restartBtn = document.getElementById("restart-button");
+
 // Set the word to guess
-const word = "gift";
+let dictionary = ["winter", "snow", "gift", "tree", "santa", "cookie"];
+
+// choose word randomly from the dictionary
+const randomWord = () => {
+  const i = Math.floor(Math.random() * dictionary.length);
+  return dictionary[i];
+};
+let word = "";
+
 // 6 guesses for the 6 parts of the snowman
-let guesses = 6;
+let totalGuesses = 6;
+let missedGuesses = 0;
 
-function checkGuess() {}
+function createInputField() {
+  console.log("---createInputField;");
 
-renderKeyboard();
+  const inputField = [...word].map((letter, index) => {
+    return `<div class="input-box" maxlength="1" aria-label="Character ${
+      index + 1
+    }" id=${index + 1}></div>`;
+  });
+  guessContainer.innerHTML = inputField.join("");
+}
+
+function takeInput() {
+  console.log("---takingInput");
+
+  const letters = document.getElementsByClassName("letter");
+
+  Array.from(letters).forEach((letter) =>
+    letter.addEventListener("click", (event) => {
+      const key = event.target.id;
+      console.log("key pressed," + key);
+      checkInput(key);
+    })
+  );
+}
+function checkInput(key) {
+  let isCorrect = false;
+  const inputBoxes = guessContainer.getElementsByClassName("input-box");
+
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === key) {
+      const inputBox = inputBoxes[i];
+      if (!inputBox.textContent) {
+        inputBox.textContent = key;
+        isCorrect = true;
+      }
+      disableKeyboardKey(key);
+    }
+  }
+  if (!isCorrect) {
+    missedGuesses++;
+    hideSnowmanBodyPart(missedGuesses);
+  }
+
+  checkGameStatus(inputBoxes);
+}
+function hideSnowmanBodyPart(missedGuesses) {
+  if (missedGuesses <= totalGuesses) {
+    const part = snowmanParts[missedGuesses - 1];
+    setTimeout(() => {
+      part.classList.add("snowman-dissolveAndShrink");
+    }, 100);
+    setTimeout(() => {
+      part.style.display = "none";
+    }, 300);
+  }
+}
+function resetSnowmanBodyPart() {
+  Array.from(snowmanParts).forEach((part) => {
+    part.classList.remove("snowman-dissolveAndShrink");
+    part.style.display = "block";
+  });
+}
+function disableKeyboardKey(letter) {
+  const key = document.getElementById(letter);
+  if (key) {
+    key.style.fontStyle = "italic";
+    key.style.textDecoration = "line-through";
+    key.style.background = "#555";
+    key.style.pointerEvents = "none";
+    key.setAttribute("disabled", "true");
+  }
+}
+function checkGameStatus(inputBoxes) {
+  const allFilled = Array.from(inputBoxes).every(
+    (box) => box.textContent !== ""
+  );
+
+  if (allFilled) {
+    resetSnowmanBodyPart();
+    sunglasses.style.visibility = "visible";
+    showGameStats("It's a Win Win!.");
+  } else if (missedGuesses >= totalGuesses) {
+    showGameStats(`Oops! It's a Game Over! The word was: ${word}`);
+  }
+}
+
+function showGameStats(message) {
+  modalMessage.textContent = message;
+  modal.style.display = "block";
+}
+
+function hideGameStats() {
+  modal.style.display = "none";
+}
+
+function restartGame() {
+  missedGuesses = 0;
+  document.querySelector(".sunglasses");
+  sunglasses.style.visibility = "hidden";
+  Array.from(document.getElementsByClassName("letter")).forEach((button) => {
+    button.removeAttribute("disabled");
+  });
+  resetSnowmanBodyPart();
+  hideGameStats();
+  init();
+}
+
+restartBtn.addEventListener("click", restartGame);
+
+function init() {
+  word = randomWord();
+  console.log(word);
+  createInputField();
+  renderKeyboard();
+  takeInput();
+}
+
+init();
