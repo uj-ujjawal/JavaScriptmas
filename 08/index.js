@@ -46,7 +46,8 @@ let totalGuesses = 6;
 let missedGuesses = 0;
 
 function createInputField() {
-  // Create input fields dynamically based on the length of the word
+  console.log("---createInputField;");
+
   const inputField = [...word].map((letter, index) => {
     return `<div class="input-box" maxlength="1" aria-label="Character ${
       index + 1
@@ -56,19 +57,21 @@ function createInputField() {
 }
 
 function takeInput() {
+  console.log("---takingInput");
+
   const letters = document.getElementsByClassName("letter");
 
-  // Add click event listener for each letter in the keyboard
   Array.from(letters).forEach((letter) =>
     letter.addEventListener("click", (event) => {
-      const key = event.target.id; // Get the clicked key
-      checkInput(key); // Pass the key to the processing function
+      const key = event.target.id;
+      console.log("key pressed," + key);
+      checkInput(key);
     })
   );
 }
 function checkInput(key) {
-  const inputBoxes = guessContainer.getElementsByClassName("input-box");
   let isCorrect = false;
+  const inputBoxes = guessContainer.getElementsByClassName("input-box");
 
   for (let i = 0; i < word.length; i++) {
     if (word[i] === key) {
@@ -121,9 +124,8 @@ function checkGameStatus(inputBoxes) {
 
   if (allFilled) {
     resetSnowmanBodyPart();
-
     sunglasses.style.visibility = "visible";
-    showGameStats("It's a Win! You guessed the word.");
+    showGameStats("It's a Win Win!.");
   } else if (missedGuesses >= totalGuesses) {
     showGameStats(`Oops! It's a Game Over! The word was: ${word}`);
   }
