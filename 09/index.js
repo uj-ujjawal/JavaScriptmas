@@ -81,5 +81,15 @@ const recipes = [
 // 2: Contains zero ingredients that Alice dislikes
 
 // Step 1: Filter recipes based on Alice's preferences
+let suitable = [];
+for (let i = 0; i < recipes.length; i++)
+  if (
+    recipes[i].ingredients.filter((value) => guest.dislikes.includes(value)) ==
+      0 &&
+    recipes[i].ingredients.filter((value) => guest.loves.includes(value))
+      .length > 0
+  )
+    suitable.push(recipes[i].name);
 
 // Step 2: Output the suitable recipes
+console.log(suitable.join(", "));
