@@ -5,25 +5,35 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --primary-bg-color: #2f4f4f;
+  --primary-text-color: #c3d3e3;
+  --highlight-text-color: #ffdd00;
+  --accent-color: #ad2340;
+  --shadow-color: #060423;
+  --card-foreground: var(--accent-color);
+  --card-background: var(--primary-text-color);
+}
+
 body {
   min-block-size: 100vh;
   display: flex;
+  gap: 5rem;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
   font-family: "Poppins", serif;
   font-weight: 400;
   font-style: normal;
-  background-color: #121212;
-  background-color: #4b4b5e;
-  background-color: #2f4f4f;
+  background-color: var(--primary-bg-color);
 }
 
 .header {
-  padding: 2rem 1rem;
+  padding: 1rem;
 }
 .header p {
-  color: #ffdd00;
+  color: var(--highlight-text-color);
   font-size: 2rem;
   font-family: "Agu Display", serif;
   font-optical-sizing: auto;
@@ -34,26 +44,39 @@ body {
   text-shadow: 0 0 5px #000;
 }
 .header h1 {
-  color: #c3d3e3;
+  cursor: pointer;
   font-family: "Lilita One", serif;
   font-weight: 400;
   font-style: normal;
   font-size: 7rem;
   line-height: 1.2;
-  text-shadow: 5px -2px 0 #ad2340, -5px 10px 5px #060423;
   letter-spacing: 5px;
 }
-.header h1 span {
-  color: #ad2340;
-  text-shadow: 5px 0px 0 #c3d3e3, -5px 10px 5px #060423;
+a {
+  text-decoration: none;
+}
+
+.header .white-title {
+  color: var(--primary-text-color);
+  text-shadow: 5px -2px 0 var(--accent-color), -5px 10px 5px var(--shadow-color);
+}
+.header .red-title {
+  color: var(--accent-color);
+  text-shadow: 5px 0px 0 var(--primary-text-color),
+    -5px 10px 5px var(--shadow-color);
+}
+
+.main {
+  margin: 0 auto;
+  min-height: 70%;
+  max-width: 100%;
 }
 
 .game-container {
-  /* border: 2px solid red; */
-  margin-top: 5rem;
   display: grid;
   grid-template-columns: repeat(4, 150px);
-  gap: 2.5rem 2rem;
+  gap: 3rem;
+  padding: 1rem;
 }
 
 .card {
@@ -62,15 +85,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ad2340;
-  cursor: pointer;
+  background-color: var(--card-foreground);
   border-radius: 8px;
-  position: relative;
   font-size: 5rem;
-  color: #c3d3e3;
+  color: var(--primary-text-color);
   transform-style: preserve-3d;
   transform: rotateY(0deg);
-  transition: transform 0.6s;
+  transition: transform 0.4s;
+  position: relative;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-10px);
 }
 
 .card-front,
@@ -84,18 +110,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 5px 5px 0 0 #060423;
-}
-
-.card-front {
-  color: #c3d3e3;
-  background-color: #ad2340;
-  background-color: #ad2340;
+  box-shadow: 5px 5px 0 0 var(--shadow-color);
 }
 
 .card-back {
   transform: rotateY(180deg);
-  background-color: #c3d3e3;
+  background-color: var(--card-background);
 }
 
 .card.open {
@@ -106,14 +126,6 @@ body {
   transform: rotateY(180deg);
 }
 
-.card.matched::before {
-  content: "✅";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .card.disable {
   cursor: not-allowed;
-  pointer-events: stroke;
 }
