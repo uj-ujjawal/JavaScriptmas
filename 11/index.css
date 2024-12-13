@@ -70,6 +70,7 @@ a {
   margin: 0 auto;
   min-height: 70%;
   max-width: 100%;
+  position: relative;
 }
 
 .game-container {
@@ -128,6 +129,101 @@ a {
 
 .card.disable {
   cursor: not-allowed;
+}
+
+/* loader */
+.loader {
+  width: fit-content;
+  font-size: 40px;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #c3d3e3;
+  --g: conic-gradient(#c3d3e3 0 0) no-repeat text;
+  background: var(--g) 0, var(--g) 1ch, var(--g) 2ch, var(--g) 3ch, var(--g) 4ch,
+    var(--g) 5ch, var(--g) 6ch;
+  background-position-y: 100%, 0;
+  animation: l16 2s linear infinite alternate;
+}
+.loader:before {
+  content: "Loading";
+}
+@keyframes l16 {
+  0% {
+    background-size: 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0;
+  }
+  14% {
+    background-size: 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0;
+  }
+  28% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0, 1ch 0;
+  }
+  42% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0, 1ch 0;
+  }
+  57% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0, 1ch 0, 1ch 0;
+  }
+  71% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 0,
+      1ch 0;
+  }
+  85% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%,
+      1ch 0;
+  }
+  100% {
+    background-size: 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%, 1ch 100%,
+      1ch 100%;
+  }
+}
+
+/* start button */
+.start {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.restart-button {
+  width: 800px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+}
+.start-btn {
+  margin: 5rem auto;
+  width: 20rem;
+  height: 70px;
+  font-family: "Agu Display", serif;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  color: #c3d3e3;
+  padding: 0.25em 0.75em;
+  background-color: #ad2340;
+  border: 3px solid #000;
+  box-shadow: 1px 1px 0px 0px #000, 2px 2px 0px 0px #000, 3px 3px 0px 0px #000,
+    4px 4px 0px 0px #000, 5px 5px 0px 0px #000;
+}
+
+.start-btn:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+.hint {
+  color: burlywood;
+  font-size: 1.6rem;
+  text-shadow: 0 0 5px #000;
 }
 
 /* Make it responsive */

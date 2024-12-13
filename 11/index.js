@@ -19,103 +19,154 @@
 
 const emojis = ["🎄", "🎁", "🎅", "☃️"];
 const gameBoard = document.getElementById("game-board");
+const gameTitle = document.getElementById("game-title");
+const firstText = document.querySelector(".white-title");
+const lastText = document.querySelector(".red-title");
+const loader = document.querySelector(".loader");
+const start = document.querySelector(".start");
+const startBtn = document.getElementById("start-button");
+
+let totalMatchFound = 0;
+let count = 0;
+let pair = [];
+let cards = [];
+
 function initGame() {
   console.log("Game Initialized");
-  const emojisDoubled = [...emojis, ...emojis];
-  const shuffledEmojis = emojisDoubled.sort(() => Math.random() - 0.5);
+  const shuffledEmojis = shuffleEmojis([...emojis, ...emojis]);
   createCards(shuffledEmojis);
 }
 
-initGame();
+function shuffleEmojis(emojis) {
+  return emojis.sort(() => Math.random() - 0.5);
+}
 
+// Create cards on the game board
 function createCards(shuffledEmojis) {
-  for (let i = 0; i < emojis.length * 2; i++) {
+  gameBoard.innerHTML = "";
+  shuffledEmojis.forEach((emoji) => {
     const card = document.createElement("div");
     card.classList.add("card");
-    const cardFront = document.createElement("div");
-    cardFront.classList.add("card-front");
-    const cardBack = document.createElement("div");
-    cardBack.classList.add("card-back");
-    cardBack.innerHTML = shuffledEmojis[i];
-    card.appendChild(cardFront);
-    cardFront.innerHTML = "?";
-    card.appendChild(cardBack);
+    card.innerHTML = `
+      <div class="card-front">?</div>
+      <div class="card-back">${emoji}</div>
+    `;
     gameBoard.appendChild(card);
-  }
-  console.log("card created and emoji alloted");
-}
-
-let count = 0;
-let pair = [];
-const cards = document.querySelectorAll(".card");
-
-cards.forEach((card) => {
-  card.addEventListener("click", function () {
-    if (
-      !(
-        this.classList.contains("open") || this.classList.contains("keepItOpen")
-      )
-    ) {
-      count++;
-      console.log("count:", count + " card opened");
-      showCard(this);
-      const emoji = card.querySelector(".card-back").textContent;
-      pair.push(emoji);
-    } else {
-      setTimeout(() => {
-        alert(
-          "This card is already open. Please choose a different one to continue."
-        );
-      }, 100);
-      return;
-    }
-    if (count === 2) {
-      console.log(pair);
-      if (matchPair(pair)) {
-        keepItOpen();
-      } else {
-        hideCard();
-      }
-      pair = [];
-      count = 0;
-    }
+    cards.push(card);
   });
-});
-function showCard(card) {
-  card.classList.add("open");
-  card.classList.add("disable");
+  console.log("Cards created and emojis allotted");
 }
 
+function showCard(card) {
+  card.classList.add("open", "disable");
+}
+
+// Check if the selected pair matches
 function matchPair(pair) {
   if (pair[0] === pair[1]) {
-    console.log("pair found");
+    totalMatchFound++;
+    console.log(totalMatchFound);
     return true;
-  } else {
-    console.log("pair not found");
-    return false;
   }
+  return false;
 }
 
 function hideCard() {
-  console.log("hide card");
+  console.log("Hiding unmatched cards");
   setTimeout(() => {
     cards.forEach((card) => {
-      if (card.classList.contains("open")) {
-        card.classList.remove("open");
-        card.classList.remove("disable");
+      if (
+        card.classList.contains("open") &&
+        !card.classList.contains("keepItOpen")
+      ) {
+        card.classList.remove("open", "disable");
         console.log("Card Closed");
       }
     });
-  }, 1000);
+  }, 500);
 }
 
-function keepItOpen() {
+function keepMatchedCardsOpen() {
   cards.forEach((card) => {
     if (card.classList.contains("open")) {
-      card.classList.remove("open");
       card.classList.add("keepItOpen");
-      console.log("KeepItOpen");
-      ("keepItOpen");
+      console.log("Matched card kept open");
     }
   });
 }
+
+function isGameOver() {
+  if (totalMatchFound === cards.length / 2) {
+    setTimeout(() => {
+      start.classList.add("restart-button");
+      start.style.display = "block";
+      startBtn.textContent = "Restart";
+    }, 1000);
+  }
+}
+
+// Type text animation for the title
+function typeText() {
+  let i = 0;
+  const first = firstText.textContent;
+  const last = lastText.textContent;
+  firstText.textContent = "";
+  lastText.textContent = "";
+
+  function type() {
+    if (i < first.length) {
+      firstText.textContent += first.charAt(i);
+      i++;
+      setTimeout(type, 100);
+    } else if (i - first.length < last.length) {
+      lastText.textContent += last.charAt(i - firstText.textContent.length);
+      i++;
+      setTimeout(type, 100);
+    } else {
+      setTimeout(() => {
+        loader.style.display = "none";
+        start.style.display = "block";
+      }, 1000);
+    }
+  }
+  type();
+}
+
+// Start the typing animation
+typeText();
+
+// Start the game on button click
+startBtn.addEventListener("click", () => {
+  initGame();
+  count = 0;
+  pair = [];
+  start.style.display = "none";
+  cards.forEach((card) => {
+    card.addEventListener("click", function () {
+      if (
+        this.classList.contains("open") ||
+        this.classList.contains("keepItOpen") ||
+        count > 2
+      ) {
+        return;
+      }
+
+      count++;
+      console.log("Card opened:", count);
+      showCard(this);
+      const emoji = this.querySelector(".card-back").textContent;
+      pair.push(emoji);
+
+      if (count === 2) {
+        if (matchPair(pair)) {
+          keepMatchedCardsOpen();
+        } else {
+          hideCard();
+        }
+        pair = [];
+        count = 0;
+      }
+      isGameOver();
+    });
+  });
+});
