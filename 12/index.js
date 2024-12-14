@@ -7,10 +7,10 @@ The site is taking shape, but now Santa is concerned that it might not be secure
 
 ⚠️ IMPORTANT 2: Any code you use to complete tasks 1 or 2 must be pasted into mySolution.js 👈. If you fail to do this your entry will not count!
 
-Task 1
+Task 1 - done
 Render a button that, when pressed, logs 'You have been hacked 🏴‍☠️' to the console just to prove there are vulnerabilities.
 
-Task 2
+Task 2 - done
 Change the product title h2 to "Do not buy this".
 
 Task 3
@@ -18,12 +18,11 @@ Fix the code so it's unhackable!
 
 🔥Stretch Goals 👇 - these are only for really dedicated (ethical 😇) hackers to do BEFORE task 3 above.
 
-Task 4
+Task 4 - done
 Hijack the Buy button so when it is clicked it calls a new function. The new function should log 'diverting payment to my account 💰'
 
-Task 5
+Task 5 - done
 Log out the credit card details.
-
 */
 
 const stars = document.querySelectorAll(".stars li");
