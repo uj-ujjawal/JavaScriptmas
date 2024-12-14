@@ -13,7 +13,7 @@ Render a button that, when pressed, logs 'You have been hacked 🏴‍☠️' to
 Task 2 - done
 Change the product title h2 to "Do not buy this".
 
-Task 3
+Task 3 - done
 Fix the code so it's unhackable!
 
 🔥Stretch Goals 👇 - these are only for really dedicated (ethical 😇) hackers to do BEFORE task 3 above.
@@ -79,7 +79,9 @@ document.addEventListener("submit", (e) => {
   const textArea = document.getElementById("text-area");
   const text = textArea.value;
   const textDisp = document.getElementById("text-output");
-  textDisp.innerHTML += `<p>${stars.join(" ")} ${text}</p>`;
+  //change innerHTML to textContent for now.
+  textDisp.textContent += `<p>${stars.join(" ")} ${text}</p>`;
+  // for more security we can use sanitizer library like purify,
   textArea.value = "";
 });
 
