@@ -1,4 +1,4 @@
-import { workshopData } from "/data.js";
+import { workshopData } from "./data.js";
 
 /*
 Santa has grown suspicious that one of his elves isn't playing fair. The elves are paid well to make toys but Santa thinks one of the elves is keeping some of the toys he has made (and probably selling them on the black market in one of Laplands dodgier neighbourhoods.)
@@ -37,13 +37,15 @@ function findNaughtyElf(data) {
           });
         } else {
           // If it's an object, recurse further
-          sumToys(region);
+          // sumToys(region); -> the sumToys(region) call is incorrect. It should pass subRegion.
+          sumToys(subRegion);
         }
       }
     }
-
-    // Calculate total toys shipped
-    sumToys(elf);
+    // Calculate total toys shipped before that let's ensure if elf.toysShipped not empty.
+    if (elf.toysShipped && typeof elf.toysShipped === "object") {
+      sumToys(elf.toysShipped);
+    }
 
     // Compare toysMade to totalShipped
     for (const toy in elf.toysMade) {
