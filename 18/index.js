@@ -19,8 +19,62 @@ Expected output: 559.93
 - Use the reduce() method to complete this challenge.
 */
 
+/*********  With classic for loop **********/
+
+// function calculateCost(arr) {
+//   let totalCost = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i]["isGift"]) totalCost += arr[i]["price"];
+//   }
+//   return parseFloat(totalCost.toFixed(2));
+// }
+
+/*********  With for-of loop **********/
+
+// function calculateCost(arr) {
+//   let totalCost = 0;
+//   for (const item of arr) {
+//     if (item["isGift"]) {
+//       totalCost += item["price"];
+//     }
+//   }
+//   return parseFloat(totalCost.toFixed(2));
+// }
+
+/*********  With forEach Loop **********/
 function calculateCost(arr) {
-  // Your code here!
+  let totalCost = 0;
+  arr.forEach((item) => {
+    if (item["isGift"]) {
+      totalCost += item["price"];
+    }
+  });
+  return parseFloat(totalCost.toFixed(2));
 }
 
 console.log(calculateCost(shoppingCartData)); //559.93
+
+/******************* stretch goal : using reduce method ********************/
+
+let totalCost = 0;
+
+/********* reduce method with filter **********/
+// totalCost = parseFloat(
+//   shoppingCartData
+//     .filter((item) => item["isGift"])
+//     .reduce((acc, item) => {
+//       return acc + item["price"];
+//     }, 0)
+//     .toFixed(2)
+// );
+
+/********* reduce method without filter **********/
+totalCost = parseFloat(
+  shoppingCartData
+    .reduce((acc, item) => {
+      return item["isGift"] ? acc + item["price"] : acc;
+    }, 0)
+    .toFixed(2)
+);
+
+console.log(`Stretch Goal: ${totalCost}`);
