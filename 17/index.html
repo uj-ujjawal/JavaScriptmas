@@ -13,35 +13,58 @@ You will need to change code in index.html and index.css to complete this challe
 
   <head>
     <meta charset="utf-8" />
-    <title>Santa Needs You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Santa: Recruitment Form</title>
     <link rel="stylesheet" href="index.css" />
   </head>
 
   <body>
     <header>
       <h1>Santa Needs You!</h1>
-      <img src="santa-needs-you.png" />
+      <img
+        src="santa-needs-you.png"
+        alt="Santa is recruiting elves and helpers!"
+      />
       <p>We're recruiting elves and helpers!</p>
     </header>
-    <section>
-      <form class="signup-form">
-        <div class="form-group">
-          <input type="text" id="name" name="name" placeholder="name" />
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" name="email" placeholder="email" />
-        </div>
-        <div class="form-group">
-          <button type="submit">Apply Now</button>
-        </div>
-      </form>
-      <p class="message">Email received! Thank you 🎅</p>
-      <h4>"Excellent pay and conditions. Plenty of travel!"</h4>
-      <p class="footer-txt">
-        We believe in equal opportunities. For full terms and conditions click
-        <a href="">here</a>.
-      </p>
-    </section>
+    <main>
+      <section>
+        <form class="signup-form" aria-labelledby="signup-form-heading">
+          <div class="form-group">
+            <label for="name">Enter Your Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="John Jacob" />
+          </div>
+          <div class="form-group">
+            <label for="email">Enter Your Email Id:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="jacob@gmail.com"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit" aria-controls="submit-message">
+              Apply Now
+            </button>
+          </div>
+        </form>
+        <p class="message" role="alert" aria-live="polite" id="submit-message">
+          Email received! Thank you 🎅
+        </p>
+        <blockquote>
+          <h2>"Excellent pay and conditions. Plenty of travel!"</h2>
+        </blockquote>
+      </section>
+      <footer class="footer-txt">
+        <p>We believe in equal opportunities.</p>
+        <p>
+          <a href="#" aria-label="Read full terms and conditions."
+            >For full terms and conditions click here.</a
+          >
+        </p>
+      </footer>
+    </main>
     <script src="index.js"></script>
   </body>
 </html>
