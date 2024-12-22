@@ -1,0 +1,173 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: #071e22;
+  --text-clr: #ffcf99;
+  --clr-heading: #ffcf99;
+  --tbl-bg-color: #212121;
+  --tbl-row-even-bg-color: #2e2e2e;
+  --tbl-row-odd-bg-color: #1c1c1c;
+  --tbl-hover-clr: #7c7f6532;
+  --tbl-head-bg-clr: #5a768476;
+  --tbl-head-text-color: #f5f5f5;
+  --filter-btn-color: #15803d;
+}
+body {
+  font-family: "poppins", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  background-color: var(--bg-color);
+  color: var(--text-clr, #ffcf99);
+}
+
+header h1 {
+  margin-top: 1rem;
+  font-family: "Agu Display", sans-serif;
+  text-align: center;
+  padding: 1rem 2rem;
+  color: var(--clr-heading, #ffcf99);
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.wrapper {
+  margin: 1.6rem auto;
+  background: var(--tbl-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+}
+
+.sort-options {
+  font-size: 1.2rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+[for="sortByPrice"] {
+  color: #ffcf99;
+}
+
+.sortByPrice {
+  font-size: 1rem;
+  padding: 8px 12px;
+  background-color: var(--filter-btn-color);
+  color: var(--text-c, #f5f5f5);
+  border: none;
+  border-radius: 5px;
+  margin-left: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.sortByPrice:hover {
+  background-color: #137135;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: var(--tbl-head-bg-clr);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--tbl-head-text-color);
+}
+
+th {
+  padding: 0.5rem;
+}
+
+th,
+td {
+  text-align: center;
+  border-bottom: 1px solid #454545;
+}
+
+td {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--tbl-row-even-bg-color);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: var(--tbl-row-odd-bg-color);
+}
+
+tbody tr:hover {
+  background-color: var(--tbl-hover-clr);
+}
+
+.add-to-cart {
+  padding: 0.5rem;
+  width: 8rem;
+  background-color: var(--cart-btn-bg-clr, #1f509a);
+  font-size: 0.9rem;
+  color: #fdfdfd;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #356fc5;
+}
+
+tbody.sorted tr {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+tbody.sorted tr.hidden {
+  opacity: 0;
+}
+
+tbody.sorted tr.visible {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+footer {
+  font-size: 1rem;
+  text-align: center;
+  color: #90ee90;
+  padding: 1rem;
+}
