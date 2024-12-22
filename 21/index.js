@@ -13,4 +13,33 @@ Expected output: "The most popular toy is 🎲 board games with 9000 requests.""
 
 */
 
-console.log(`The most popular toy is <TOY> with <NUMBER> requests.`);
+/* const requestedToy = toysRequested.flatMap((entry)=> entry.toys);
+console.log(requestedToy); */
+
+/* const mostReqToy=requestedToy.reduce((acc,toy)=>{
+const[toyName,toyReq] = Object.entries(toy)[0];
+console.log(`${toyName} ${toyReq}`)
+
+acc[toyName] = (acc[toyName]||0)+toyReq;
+
+return acc;
+
+},{});
+
+console.log(mostReqToy); */
+
+const mostRequestedToy = toysRequested
+  .flatMap((ele) => ele.toys)
+  .reduce((acc, toy) => {
+    const [toyName, toyReq] = Object.entries(toy)[0];
+    acc[toyName] = (acc[toyName] || 0) + toyReq;
+    return acc;
+  }, {});
+
+// console.log(mostRequestedToy)
+
+const winner = Object.entries(mostRequestedToy).reduce((max, toy) => {
+  return toy[1] > max[1] ? toy : max;
+});
+
+console.log(`The most popular toy is ${winner[0]} with ${winner[1]} requests.`);
