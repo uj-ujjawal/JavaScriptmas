@@ -1,25 +1,176 @@
 /*
 Link to Figma: https://scrimba.com/links/santa-saas-figma
 */
-* {
-  --red: rgba(143, 0, 2, 0.83);
-  --light-red: #fff2f2;
-  --dark-red: #470000;
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    --text-size-adjust: none;
+  }
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  [role="list"] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    max-width: 100%;
+  }
+  body {
+    min-block-size: 100vh;
+    line-height: 1.6;
+  }
 }
 
-nav {
-  background-color: var(--red);
+@layer base {
+  html {
+    line-height: 1.6;
+    scroll-padding: 2rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  :root {
+    --clr-red-light: #fff2f2;
+    --clr-red-dark: #470000;
+    --clr-red: #8f0002d4;
+  }
+  body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 1rem;
+    color: #fff;
+    /* background-color: #121221; */
+  }
+
+  .wrapper {
+    --wrapper-max-width: 1400px;
+    max-width: var(--wrapper-max-width);
+    margin-inline: auto;
+    padding-inline: 1rem;
+    width: 100%;
+    /* data-width attribute allow nesting*/
+    &[data-width="narrow"] {
+      --wrapper-max-width: 1000px;
+      /* border: 2px solid wheat; */
+    }
+    &[data-width="wide"] {
+      --wrapper-max-width: 1400px;
+      /* border: 2px solid palegreen; */
+    }
+  }
+}
+.navbar {
+  background-color: var(--clr-red);
+  padding: 1rem 0;
+}
+.site-header--inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+[role="list"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+button {
+  border-radius: 8px;
+  padding: 0.8rem 3rem;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  margin-left: 1rem;
+  font-size: inherit;
+}
+[aria-label="Sign up"] {
+  background-color: #fff;
+  color: var(--clr-red);
 }
 
-ul,
-li {
-  padding: 0;
-  list-style-type: none;
-}
-img {
-  max-width: 100%;
+.site__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px;
+  color: #fff;
 }
 
-#customer img {
-  width: 100px;
+.hero {
+  position: relative;
+  text-align: center;
+  /* border: 2px solid red; */
+  overflow: hidden;
+}
+
+.hero-title {
+  padding-top: 5rem;
+  font-size: 4rem;
+}
+.hero-desc {
+  font-size: 1.125rem;
+  width: 500px;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+[aria-label="Try GiftChain.ai for free"] {
+  background-color: #fff;
+  color: var(--clr-red);
+  margin-inline-end: 1.5rem;
+}
+.hero-img {
+  margin-top: 5rem;
+}
+.hero-img img {
+  border-radius: 20px;
+  box-shadow: 20px 20px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-bg {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border-bottom-right-radius: 60%;
+  border-bottom-left-radius: 0;
+  background-color: var(--clr-red);
+  top: -30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
