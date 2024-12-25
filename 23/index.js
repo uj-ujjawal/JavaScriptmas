@@ -25,3 +25,11 @@ const santasArr = [
 const missingNamesArr = ["Florinda", "Jose", "Gibbs"];
 
 // Expected Output: ['James', 'Yi', 'Florinda', 'Fatima', 'Tariq', 'Jose', 'Clare', 'Gibbs']
+let index = 0;
+santasArr.forEach((name, i) => {
+  if (name === "Grinch") {
+    santasArr[i] = missingNamesArr[index];
+    index++;
+  }
+});
+console.log(santasArr);
