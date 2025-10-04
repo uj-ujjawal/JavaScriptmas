@@ -1,0 +1,127 @@
+[
+  {
+    "name": "Day 01",
+    "dir": "01",
+    "url": "./01/index.html"
+  },
+  {
+    "name": "Day 02",
+    "dir": "02",
+    "url": "/02/index.html"
+  },
+  {
+    "name": "Day 03",
+    "dir": "03",
+    "url": "./03/index.html"
+  },
+  {
+    "name": "Day 04",
+    "dir": "04",
+    "url": "/04/index.html"
+  },
+  {
+    "name": "Day 05",
+    "dir": "05",
+    "url": "./05/index.html"
+  },
+  {
+    "name": "Day 06",
+    "dir": "06",
+    "url": "/06/index.html"
+  },
+  {
+    "name": "Day 07",
+    "dir": "07",
+    "url": "./07/index.html"
+  },
+  {
+    "name": "Day 08",
+    "dir": "08",
+    "url": "/08/index.html"
+  },
+  {
+    "name": "Day 09",
+    "dir": "09",
+    "url": "./09/index.html"
+  },
+  {
+    "name": "Day 10",
+    "dir": "10",
+    "url": "/10/index.html"
+  },
+  {
+    "name": "Day 11",
+    "dir": "11",
+    "url": "./11/index.html"
+  },
+  {
+    "name": "Day 12",
+    "dir": "12",
+    "url": "/12/index.html"
+  },
+  {
+    "name": "Day 13",
+    "dir": "13",
+    "url": "./13/index.html"
+  },
+  {
+    "name": "Day 13",
+    "dir": "13",
+    "url": "/13/index.html"
+  },
+  {
+    "name": "Day 14",
+    "dir": "14",
+    "url": "./14/index.html"
+  },
+  {
+    "name": "Day 15",
+    "dir": "15",
+    "url": "/15/index.html"
+  },
+  {
+    "name": "Day 16",
+    "dir": "16",
+    "url": "./16/index.html"
+  },
+  {
+    "name": "Day 17",
+    "dir": "17",
+    "url": "/17/index.html"
+  },
+  {
+    "name": "Day 18",
+    "dir": "18",
+    "url": "/18/index.html"
+  },
+  {
+    "name": "Day 19",
+    "dir": "19",
+    "url": "/19/index.html"
+  },
+  {
+    "name": "Day 20",
+    "dir": "20",
+    "url": "./20/index.html"
+  },
+  {
+    "name": "Day 21",
+    "dir": "21",
+    "url": "/21/index.html"
+  },
+  {
+    "name": "Day 22",
+    "dir": "22",
+    "url": "/22/index.html"
+  },
+  {
+    "name": "Day 23",
+    "dir": "23",
+    "url": "./23/index.html"
+  },
+  {
+    "name": "Day 24",
+    "dir": "24",
+    "url": "/24/index.html"
+  }
+]
