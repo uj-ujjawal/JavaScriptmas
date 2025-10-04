@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".card-container");
-  fetch("/projects.json")
+  fetch("./projects.json")
     .then((r) => (r.ok ? r.json() : Promise.reject("projects.json not found")))
     .then((list) => {
       list.forEach((p) => {
